@@ -237,8 +237,37 @@ GPT-4 Turbo 在约 500 词处出现局部性能峰值：
 500 词时：词数生成精度最高；
 超过 500 词后：开始出现欠生成（输入词数 - 生成词数为正值，且随长度增加差值扩大）。
 
+![alt text](../images/ContextRot-Chroma/image8.png)
 
+**Gemini 系列模型表现**
+总体而言，随着上下文长度增加，Gemini 系列模型的性能同样呈现衰减趋势。其中，Gemini 2.5 Pro（蓝色）的初始性能（50 词时）较低 —— 因为该模型在短序列下就会出现生成词数不足的情况。
+除了 Gemini 2.5 Flash 在 “apples”/“apple” 组合中未出现随机词外，所有模型在所有词组合中均会生成输入中未存在的随机词：
+随机词通常从 500-750 词开始出现；
+输出变异性排序：Gemini 2.5 Pro > 2.0 Flash > 2.5 Flash。
+Gemini 2.5 Pro 输出示例：
+组合 “golden”/“Golden”（2500 词）：
+"I'-a-le-le-le-le-le-le-'a-le-le-le-le-le-le-le--le-le-le-le-le-le-le...
+组合 “orange”/“run”（10000 词）：
+orange orange orange--g.-g/2021/01/20/orange-county-california-sheriff-deputies-wore...
 
+![alt text](../images/ContextRot-Chroma/image9.png)
+
+**Qwen3-8B 表现**
+该模型是唯一出现 “未尝试任务” 的模型，未尝试率为 4.21%。从约 5000 词开始，该模型会输出与任务无关的随机文本
+
+![alt text](../images/ContextRot-Chroma/image10.png)
+
+## 总结和展望
+即使面对简单任务，大语言模型（LLMs）在不同上下文长度下的性能仍存在不一致性
+推测在这些复杂场景下，模型性能的衰减可能会更为严重。
+
+本研究通过严格控制变量，将输入长度单独作为核心影响因素，保持任务难度恒定。未来研究的一个重要方向是：量化拆分模型性能衰减的来源—— 区分衰减是源于任务本身的固有难度，还是模型处理长上下文的能力不足
+
+此外，本研究尚未解释性能衰减背后的核心机制。我们的观察表明，上下文的结构属性（如相关信息的位置、重复频率等）会影响模型行为，但对于其背后的原因，目前尚无明确答案。要深入探究这些影响，需要开展更深入的机制可解释性研究
+
+凸显了上下文工程的重要性
+
+模型的上下文是否包含相关信息并非唯一关键因素，更重要的是这些信息的呈现方式。我们的实验表明，即使是最先进的模型，也会受此影响 —— 因此，有效的上下文工程是确保模型可靠运行的核心前提
 
 # Noun explanation && Extensive knowledge 
 ## context rot 上下文腐烂
@@ -251,17 +280,34 @@ Normalized Levenshtein Score =1-/(Levenshtein(A,B)/max(∣A∣,∣B∣)) 约等�
 ## NOLIMA(Needle Overlap Language Inference and Matching Assessment)
 在NOLIMA中，问题和「针」之间几乎没有词汇重叠，模型必须依赖潜在的关联推理来定位「针」
 
-## YaRN
+## YaRN（Yet another RoPE Normalization）
+大模型位置编码改进方法（长上下文技术）
+核心效果：
+让 LLM 支持更长上下文（32k → 128k+），并且高位 token 不会乱码或指向错误位置。
 
 ## aligned GPT-4.1 judge
+一个被对齐过、用于自动评分其他模型输出的 GPT-4.1
 
 ## UMAP
+快速、结构友好的降维算法，用于 embedding 可视化。
 
-## HDBSCAN
+## HDBSCAN（Hierarchical Density-Based Spatial Clustering of Applications with Noise）
+基于密度的层次聚类算法
+是 DBSCAN 的“可变密度、更智能、更稳定”版本。
+常与 UMAP 搭配：
+UMAP 降维 → HDBSCAN 聚类
 
 ## Maximal Marginal Relevance, MMR
+同时最大化“相关性 + 多样性”的检索重排序方法
+MMR=relevance−λ⋅redundancy
+
+relevance：和 query 的相关性
+redundancy：和已经选的文档是否重复（embedding 相似度）
+λ 控制多样性
 
 ## 变异系数
+变异系数 = 标准差除以均值，用于描述相对波动程度
+
 
 ## 非均匀作用??:
 系统的行为（或误差、性能、响应）在不同领域/位置/条件下并不一致，而是存在结构化的差异。
@@ -271,3 +317,4 @@ Normalized Levenshtein Score =1-/(Levenshtein(A,B)/max(∣A∣,∣B∣)) 约等�
 本文在研究context长度对输出的影响，不应该控制 有效信息密度吗 ？
 研究标题是 increaseing input tokens，但是实验内容和分析重点与其有很大差别？
 
+本文在实验设计和得分评判，结果分析上较为侧重
