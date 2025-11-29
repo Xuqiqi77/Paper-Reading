@@ -2,9 +2,11 @@
 
 [Context Engineering 2.0: The Context of Context Engineering](https://arxiv.org/abs/2510.26493)
 
+[Effective harnesses for long-running agents](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents)
+
 ReAct: Synergizing Reasoning and Acting in Language Models
 
-[Effective harnesses for long-running agents](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents)
+
 
 [Effective context engineering for AI agents](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents)
 
