@@ -4,11 +4,9 @@
 
 [Effective harnesses for long-running agents](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents)
 
-ReAct: Synergizing Reasoning and Acting in Language Models
-
-
-
 [Effective context engineering for AI agents](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents)
+
+ReAct: Synergizing Reasoning and Acting in Language Models
 
 [Agentic Context Engineering: Evolving Contexts for Self-Improving Language Models](https://www.arxiv.org/pdf/2510.04618)
 

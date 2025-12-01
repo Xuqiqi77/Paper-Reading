@@ -1,3 +1,4 @@
+<!-- 研究得有点杂，完整性强 -->
 #  Context Rot: How Increasing Input Tokens Impacts LLM Performance (Chroma)
 ## 背景和动机
 大语言模型（LLMs）通常被认为会均匀处理上下文—— 也就是说，模型处理第 10,000 个 token 时应与处理第 100 个 token 时同样可靠。然而在实际应用中，这一假设并不成立。我们发现，即使在简单任务上，模型性能也会随输入长度的变化而显著波动。
