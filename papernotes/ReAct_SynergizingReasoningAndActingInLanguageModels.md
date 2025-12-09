@@ -1,5 +1,5 @@
-<!-- 将推理和行动结合， -->
-<!-- 2023 thu  -->
+<!-- 将推理和行动结合，通过范例学习，让模型加入自主的稀疏性思考以提高完成任务的能力 -->
+<!-- 2023 thu  Shunyu Yao -->
 # ReAct: Synergizing Reasoning and Acting in Language Models
 协同推理与行动
 
@@ -28,7 +28,7 @@ exp:
 近期研究暗示，这种推理与行动的结合也可能应用于自主系统
 但现在的CoT推理是一个静态黑箱：模型仅依赖其内部表征生成思维，未与外部世界建立联系，因此难以进行反应式推理或更新知识，容易导致事实幻觉（hallucination） 和推理过程中的错误传播（如图1(1b)所示）
 
-![image 1](image.png)
+![image 1](../images/ReAct_SynergizingReasoningAndActingInLanguageModels/image.png)
 
 另一方面，近期工作探索了使用预训练语言模型在交互环境中进行规划与行动（Ahnet al., 2022；Nakano et al., 2021；Yao et al., 2020；Huang et al., 2022a），重点是利用语言先验来预测动作。
 除了这类与少量积木交互的简单具身任务外，尚无研究系统探索如何在通用任务求解中协同结合推理与行动，也未验证这种结合是否比单独使用推理或行动更具系统性优势。
@@ -152,11 +152,11 @@ CoT 在推理结构上更准确，但容易产生虚构的事实或错误的推�
 
 ### 结果和观察
 
-![alt text](image-1.png)
+![alt text](../images/ReAct_SynergizingReasoningAndActingInLanguageModels/image-1.png)
 
-![alt text](image-2.png)
+![alt text](../images/ReAct_SynergizingReasoningAndActingInLanguageModels/image-2.png)
 
-![alt text](image-3.png)
+![alt text](../images/ReAct_SynergizingReasoningAndActingInLanguageModels/image-3.png)
 
 **ReAct 一直优于仅行动方法（Act）**
 table 1  
@@ -228,29 +228,98 @@ WebShop 包含大量结构化与非结构化文本
 
 ### 结果
 
-![alt text](image-4.png)
+![alt text](../images/ReAct_SynergizingReasoningAndActingInLanguageModels/image-4.png)
 
 ReAct 在 ALFWorld（表 3）和 WebShop（表 4）上均显著优于 Act。
+**在 ALFWorld 上**
+事实上，即便是 ReAct 最差的试验（48%）也超过了 Act 和 BUTLER 的最佳表现。
+定性分析： 无任何思考的 Act 无法正确将目标分解为子目标，或容易丢失对环境当前状态的跟踪
+
+**在 WebShop 上**
+one-shot Act 提示已与 IL 和 IL+RL 方法性能相当\
+而加入稀疏推理后，ReAct 显著提升性能，成功率绝对提升 10%\
+ReAct 更能通过推理弥合嘈杂观察与行动之间的鸿沟\
+然而，现有方法仍远逊于人类专家\
+
+### 内部推理 vs. 外部反馈的价值
+prior work:
+Huang etal. (2022b) Inner Monologue（IM） 但 IM 的“内心独白”仅限于：
+对环境状态的观察；
+为达成目标还需完成的任务。
 
 
+据我们所知，ReAct 是首个在闭环交互系统中将推理与行动结合并应用于交互环境的大语言模型方法。
+
+相比之下，ReAct 在决策任务中的推理轨迹更灵活、更稀疏
+
+消融实验： 使用一种模仿 IM 风格的、密集依赖外部反馈的思考模式（称为 ReAct-IM）
+仅允许模型思考“当前目标分解”和“待完成子目标”，禁用高阶推理（如判断子目标完成、利用常识定位物品）
+如表 3 所示，ReAct 显著优于 ReAct-IM（整体成功率 71% vs. 53%）
+
+定性分析：
+ReAct-IM 常因缺乏高层目标分解而错误判断子目标是否完成或下一步该做什么；同时，由于缺乏常识推理，许多 ReAct-IM 轨迹难以判断物品在 ALFWorld 中的可能位置
+
+## 相关工作
+### 用于推理的语言模型
+1. 思维链（Chain-of-Thought, CoT）（Wei 等，2022）
+2. 用于解决复杂任务的由简入繁提示（least-to-most prompting）（Zhou 等，2022）
+3. 零样本 CoT（zero-shot CoT）（Kojima 等，2022）
+4. 自一致性推理（self-consistency reasoning）（Wang 等，2022a）
+5. Madaan 与 Yazdanbakhsh（2022）系统研究了 CoT 的表述与结构，指出符号、模式和文本的存在对 CoT 的有效性至关重要。
+6. Selection-Inference（Creswell 等，2022）将推理分为“选择”与“推断”两个步骤；
+7. STaR（Zelikman 等，2022）通过在模型自身生成的正确推理基础上进行微调，自举推理过程；
+8. 可信推理（Faithful reasoning）（Creswell & Shanahan，2022）将多步推理拆解为三个阶段，分别由专用语言模型执行；
+9. 类似方法如 Scratchpad（Nye 等，2021）通过在中间计算步骤上微调语言模型，在多步计算问题上取得提升。
 
 
+与这些方法不同，ReAct 不仅执行孤立或固定的推理，还将模型的行动及其对应的观察整合为连贯的输入流
 
+### 用于决策的语言模型
+1. WebGPT（Nakano 等，2021）使用语言模型与网页浏览器交互，浏览网页并从 ELI5（Fan 等，2019）中推断复杂问题的答案。但与 ReAct 不同，WebGPT 未显式建模思考与推理过程，而是依赖昂贵的人类反馈进行强化学习。
+2. 在对话建模中，BlenderBot（Shuster 等，2022b）、Sparrow（Glaese 等，2022）以及任务型对话系统 SimpleTOD（Hosseini-Asl 等，2020）也训练 LLM 决定何时调用 API。但这些方法同样未显式考虑推理过程，且依赖昂贵的数据集和人工反馈进行策略学习。
 
+相比之下，ReAct 以更低的成本学习策略——其决策过程仅需用自然语言描述推理步骤即可。
 
+此外，LLM 也越来越多地被用于交互式与具身环境中的规划与决策。在此方面，与 ReAct 最相关的工作是
 
+3. SayCan（Ahn 等，2022）：用 LLM 生成机器人可执行的动作候选，再由基于视觉环境的“可执行性模型”（affordance model）重排序；
+4. Inner Monologue（Huang 等，2022b）：在 SayCan 基础上引入“内心独白”，以环境反馈注入模型输入。据我们所知，这是首个展示闭环系统的工作，ReAct 正是在此基础上构建的。
 
+但我们认为，Inner Monologue 并未真正包含“内在思考”——这一点我们在第 4 节中已详细阐述。
+## 结论
+尽管方法简单，但面对动作空间庞大的复杂任务时，ReAct 仍需要大量示例才能学好，而这很容易超出上下文学习的输入长度限制。我们在 HotpotQA 上尝试了微调方法，取得了初步 promising 的结果，但更多高质量的人工标注数据仍是进一步提升性能的关键。
+
+未来，通过多任务训练扩展 ReAct，并将其与强化学习等互补范式结合，有望构建更强的智能体，进一步释放 LLM 在更广泛应用中的潜力
+
+# 附录
+
+1. GPT-3 实验：验证 ReAct 在 GPT-3（text-davinci-002）上的泛化能力，结果显示 ReAct 在 HotpotQA 和 ALFWorld 上甚至优于 PaLM-540B，证明其方法不依赖特定模型。
+2. REACT OBTAINS UP-TO-DATE KNOWLEDGE ON HOTPOTQA
+3. 在 ALFWorld 中，人类只需编辑 ReAct 的“思考”步骤（如修正幻觉、添加常识提示），即可引导模型完成原失败任务（图5）。这凸显 ReAct 的可干预性与人机协作潜力
+4. 给出了完整提示示例（Prompts）
+5. 轨迹示例（Trajectories）
+6. 成败模式分析（More Analysis）
 # Noun explanation && Extensive knowledge 
 ## 推理能力 & 行动能力
-
+推理能力：指模型通过逻辑、常识、数学或符号操作对问题进行逐步分析、分解和推导的能力。
+行动能力：指模型与外部环境交互、执行操作以达成目标的能力。
 ## CoT-SC
-
+一种改进版的思维链（CoT）方法，通过多次采样（如 21 次）生成多个推理路径，然后选择出现频率最高的答案作为最终输出
+不依赖外部知识，仅利用模型内部知识
 ## WebGPT
-
-
-
-
-
+使用 GPT 模型控制浏览器完成复杂问答（如 ELI5 数据集）
+## IL(Imitation Learning，模仿学习)
+定义：通过模仿专家示范（human demonstrations）来学习策略。模型观察“状态 → 行动”对，学习如何复现。
+在决策任务中：
+ALFWorld 的 BUTLER 是典型 IL 智能体（每类任务用 105 条专家轨迹训练）；
+WebShop 的 IL 基线用 1,012 条人工标注的购物轨迹训练。
+与 ReAct 对比：
+IL 需要大量专家数据；
+ReAct 仅用 1–6 条提示示例即可超越 IL，说明语言先验 + 推理比纯行为克隆更高效。
+## closed-loop system
+系统能根据环境反馈动态调整自身行为，形成“感知 → 决策 → 行动 → 新感知”的循环
 # 思考？
+适时与外部交互十分重要
+严重依赖高质量人工标注的推理-行动轨迹
 
-
+也算是对模型上下文的一种优化
