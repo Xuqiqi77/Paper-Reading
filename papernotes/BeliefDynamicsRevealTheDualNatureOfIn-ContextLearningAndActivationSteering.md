@@ -23,7 +23,7 @@
 
 **激活操控的强度   与ICL 示例数量**
 
-![alt text](image.png)
+![alt text](../images/BeliefDynamicsRevealTheDualNatureOfIn-ContextLearningAndActivationSteering/image.png)
 
 1. 后验信念随上下文示例数量呈 S 形增长，解释了先前关于 ICL 中“突现学习曲线”（sudden learning curves）的观察；
 2. ICL 行为的偏移量与操控向量的强度成比例，具有可预测性；
@@ -35,7 +35,7 @@
 
 我们将输入语境 x 条件下模型输出 y 的分布定义为对潜在概念 C 的推理
 
-![alt text](image-1.png)
+![alt text](../images/BeliefDynamicsRevealTheDualNatureOfIn-ContextLearningAndActivationSteering/image-1.png)
 
 潜在概念空间 c∈C是模型在预训练阶段习得的。在推理阶段，不同的输入提示 x 会通过概念似然函数 
 p(x∣c)激活这些概念。
@@ -44,7 +44,7 @@ p(x∣c)激活这些概念。
 CAA 通过收集两个 “对比” 数据集在特定层 ℓ 中输入 X 最终 token 位置的激活值 a ℓ(X) 来构建引导向量。
 若 Dc是有害提示数据集，Dc′ 是无害提示数据集，CAA 可用于识别朝向（或远离）有害查询的引导方向
 
-![alt text](image-2.png)
+![alt text](../images/BeliefDynamicsRevealTheDualNatureOfIn-ContextLearningAndActivationSteering/image-2.png)
 
 ## 线性表征假设与激活引导（Linear representation hypothesis and activation steering）
 激活引导方法的工作原理尚不明确。这类方法与词向量代数中的类比逻辑相似
@@ -63,7 +63,7 @@ hidden state ≈ 多个“概念方向”的线性叠加
 沿某个方向移动，概念就变强或变弱  经验事实
 v→v+m⋅dc​
 
-![alt text](image-3.png)
+![alt text](../images/BeliefDynamicsRevealTheDualNatureOfIn-ContextLearningAndActivationSteering/image-3.png)
 
 di : 第 i 个“概念方向”,假设近似正交  v:某一层的 hidden representation
 𝛽𝑖(𝑣):这个概念在当前输入中有多强
@@ -79,9 +79,9 @@ LRH = 假设 LLM 的 hidden state 是由多个“概念方向”线性叠加而�
 一是通过多示例上下文学习（many-shot ICL）和激活引导，模型性能能获得显著提升；
 二是提供不超过 128 个上下文示例时，LLM 的表现能接近 100%。
 
-![alt text](image-4.png)
+![alt text](../images/BeliefDynamicsRevealTheDualNatureOfIn-ContextLearningAndActivationSteering/image-4.png)
 
-![alt text](image-5.png)
+![alt text](../images/BeliefDynamicsRevealTheDualNatureOfIn-ContextLearningAndActivationSteering/image-5.png)
 
 数据集构成：5 个人格数据集，分两类 ——3 个有害（黑暗三人格）、2 个非有害（道德虚无主义相关），均来自公开数据集集合，确保实验可复现。
 任务形式：二分类问答（Yes/No），上下文为聊天式对话，行为量化直接用模型对两个选项的对数概率，简单且客观。
@@ -104,16 +104,95 @@ LRH = 假设 LLM 的 hidden state 是由多个“概念方向”线性叠加而�
 目标概念 c（如某一特定人格）及其补集 c′
 令 sigmoid 函数为 σ
 
-![alt text](image-6.png)
+![alt text](../images/BeliefDynamicsRevealTheDualNatureOfIn-ContextLearningAndActivationSteering/image-7.png)
+
+### 语境即证据：上下文学习的动态过程
+
+![alt text](../images/BeliefDynamicsRevealTheDualNatureOfIn-ContextLearningAndActivationSteering/image-6.png)
+
+![alt text](../images/BeliefDynamicsRevealTheDualNatureOfIn-ContextLearningAndActivationSteering/image-8.png)
+
+σ(−logo)  =  p(c'∣x)
+
+在一系列假设和代入下得到如上表达式  [??????????????]
+
+预测：  
+p(y (c) ∣x) 会随 N 1−α的积累呈现 S 型趋势。
+
+结果：
+![alt text](../images/BeliefDynamicsRevealTheDualNatureOfIn-ContextLearningAndActivationSteering/image-9.png)
+
+上下文学习动态相对于 N 1−α呈 S 形（sigmoidal），并受激活操控的调制。我们发现，多示例上下文学习的动态呈现 S 形曲线（实线），并可被上下文数据量的幂律关系有效拟合（虚线）。此外，我们还发现，不同强度的激活操控（以不同颜色的线条表示）会系统性地偏移上下文学习的动态曲线。在我们的信念动态模型中，这一现象被解释为：激活操控改变了大语言模型的信念状态。
+
+需要注意的是，由于我们通过交叉验证拟合模型，因此在本图的横轴变换中使用了各折（folds）所拟合出的 α参数的平均值。
+
+###  改变模型信念：激活引导的影响
+假设线性表征假设（LRH）对神经网络成立
+（i）可通过简单逻辑探针从模型表征中线性提取概念（Belinkov，2022；Tenney 等人，2019）；
+（ii）沿特定方向对隐藏表征进行线性代数操作可引导模型输出（Panickssery 等人，2024；Turner 等人，2024）；
+（iii）表征被定义为这些方向的加性混合（Bricken 等人，2023；Templeton 等人，2024）。
+
+统一一下 ： 
+
+![alt text](../images/BeliefDynamicsRevealTheDualNatureOfIn-ContextLearningAndActivationSteering/image-10.png)
+
+![alt text](../images/BeliefDynamicsRevealTheDualNatureOfIn-ContextLearningAndActivationSteering/image-11.png)
+因为 𝑑𝑖 就是概念方向：βi​(v+mdi​)=βi​(v)+m
+将 7 式 右等号左侧后两项记为右侧第二项
+
+因此，我们认为引导的影响最适合描述为对模型某一概念 C 先验信念的改变 —— 将对数先验概率比从 
+7 式 右等号左侧第二项 更新为 右侧第二项
+
+直观而言，这一形式化表述验证了如下观点：无论输入 x 如何，引导向量都应能改变行为 y
+
+预测：
+假设线性表征假设成立，式（7）表明，随着引导强度 m 增加，模型对概念 ci 的信念将以 S 型速率增长。
+
+结果
+![alt text](../images/BeliefDynamicsRevealTheDualNatureOfIn-ContextLearningAndActivationSteering/image-12.png)
+我们发现，激活引导会使与人格匹配的行为呈现 S 型趋势（因此后验概率比呈线性趋势），且这一趋势随引导向量强度变化（图 5）。
+当我们调节操控向量的强度（横轴）时，发现行为响应（纵轴）呈现出S形（sigmoidal）函数特征。在操控强度范围为[−1,1] 内，我们观察到操控对行为的影响近似呈线性，但随着强度进一步增大，这种影响逐渐趋于饱和。这一模式在不同数量的上下文学习示例下均保持一致（不同颜色代表不同示例数）。
+
+### 最终模型
+
+![alt text](../images/BeliefDynamicsRevealTheDualNatureOfIn-ContextLearningAndActivationSteering/image-13.png)
+
+该模型描述了模型行为如何随语境长度 N 和引导强度 m 变化。
+
+![alt text](../images/BeliefDynamicsRevealTheDualNatureOfIn-ContextLearningAndActivationSteering/image-14.png)
+
+预测：
+对数后验概率比会受到上下文示例数量和引导强度的叠加影响，这种相互作用将产生不同的阶段 —— 这些阶段分别由对 c 或 c ′的信念主导。阶段之间的边界（即对概念 c 的信念超过 c ′  时的转换点 N ∗）可通过初始对数先验概率比和引导强度预测（式 9）
+
+结果：
+![alt text](../images/BeliefDynamicsRevealTheDualNatureOfIn-ContextLearningAndActivationSteering/image-15.png)
+
+观察图 6 中的相图，我们发现我们的模型能高度准确地预测上下文学习和引导的联合效应。
+heatmap
 
 
+![alt text](../images/BeliefDynamicsRevealTheDualNatureOfIn-ContextLearningAndActivationSteering/image-16.png)
+
+我们能够预测行为转向由 c 主导时的转换点（图 7）。
+
+## 讨论
+我们发现，上下文学习和激活引导之间存在一条相位边界，而这一转换点会受到语境和激活状态的共同调节
+此外，我们提出了一个贝叶斯信念动态模型，该模型将这一理论形式化，并能准确预测语言模型行为随语境长度和引导向量强度的变化。
 
 
+此外，我们发现部分大语言模型（如 phi-4-mini-instruct）在接受引导时，行为并未出现明显变化 —— 这可能意味着这些模型以非线性方式表征信念，也可能表明我们构建引导向量的特定方法存在局限性
 
 # 附录 
+核心公式推导（理论基础补充）
 
+跨模型验证结果（泛化性证明）  在 Qwen-2.5-7B 和 Gemma-2-9B 两种模型上复现主文实验，验证信念动态模型的泛化性。
 
+激活引导的完整强度范围测试（边界条件说明）
+![alt text](../images/BeliefDynamicsRevealTheDualNatureOfIn-ContextLearningAndActivationSteering/image-17.png)
 
+多示例引导向量计算实验（额外发现）
+
+实验细节（可重复性支撑）
 
 # Noun explanation && Extensive knowledge 
 ## In-Context Learning ICL 上下文学习
