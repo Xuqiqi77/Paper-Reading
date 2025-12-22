@@ -59,7 +59,7 @@ the context is separated into 3 parts
 2. 对自身思考过程的解释             而解释、执行的动作及其产生的观察结果则共同构成下一轮循环的新 “最新交互”
 3. 下一步动作                      这一过程重复进行，直至智能体判定已收集足够信息以提供准确的最终答案
 
-![alt text](image.png)
+![alt text](../images/AgentFold/image.png)
 
 ### 上下文
 AgentFold 的上下文设计为动态认知工作区，划分为四个不同组件
@@ -68,7 +68,7 @@ AgentFold 的上下文设计为动态认知工作区，划分为四个不同组�
 多尺度状态摘要      精选长期记忆，保留轨迹的顺序逻辑流
 最新交互            提供最近一次交互的完整记录
 
-![alt text](image-1.png)
+![alt text](../images/AgentFold/image-1.png)
 
 S
 简单来讲，就是之前多段步骤的上下文，将其按序
@@ -77,7 +77,7 @@ S
 
 ### AgentFold 的响应：思考、折叠、解释与动作
 
-![alt text](image-2.png)
+![alt text](../images/AgentFold/image-2.png)
 
 k由模型自己生成
 
@@ -85,7 +85,7 @@ k由模型自己生成
 即使是最先进的大语言模型，也无法仅通过提示工程可靠地生成 AgentFold 所需的准确、结构化多部分响应。为缓解这一问题，我们采用了一系列拒绝采样机制，丢弃任何未能严格遵循要求格式的生成步骤，或包含过多环境错误的轨迹。这确保了我们收集的每个数据点都是目标推理过程的清晰范例
 
 
-![alt text](image-3.png)
+![alt text](../images/AgentFold/image-3.png)
 
 
 AgentFold 的精细压缩通过将细节保存在独立块中，使其免受不必要的重复处理，直接缓解了这种累积风险。
@@ -98,7 +98,7 @@ Qwen3-30B-A3B-Instruct-2507
 Benchmarks : 3 个信息检索类基准测试集和 1 个通用基准测试集
 Baselines : 代表性开源智能体 + 多个商业智能体
 
-![alt text](image-4.png)
+![alt text](../images/AgentFold/image-4.png)
 
 token 数量 块数量   缓慢的亚线性速率增长   相比于 react
 
