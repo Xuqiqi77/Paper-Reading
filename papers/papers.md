@@ -15,3 +15,5 @@ ReAct: Synergizing Reasoning and Acting in Language Models
 [MiroThinker: Pushing the Performance Boundaries of Open-Source Research Agents via Model, Context, and Interactive Scaling](https://arxiv.org/abs/2511.11793)
 
 [AgentFold: Long-Horizon Web Agents with Proactive Context Management](https://arxiv.org/abs/2510.24699)
+
+[CoV: Chain-of-View Prompting for Spatial Reasoning](https://arxiv.org/abs/2601.05172)
