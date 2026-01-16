@@ -1,6 +1,6 @@
 <!-- 视角链,粗粒度到细粒度 -->
 <!-- zju -->
-# From Tokens to Thoughts: How LLMs and Humans Trade Compression for Meaning
+# CoV: Chain-of-View Prompting for Spatial Reasoning
 ## Brief
 具身问答（EQA）   机器人技术、自主导航、人机交互等领域
 
