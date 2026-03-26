@@ -17,3 +17,7 @@ ReAct: Synergizing Reasoning and Acting in Language Models
 [AgentFold: Long-Horizon Web Agents with Proactive Context Management](https://arxiv.org/abs/2510.24699)
 
 [CoV: Chain-of-View Prompting for Spatial Reasoning](https://arxiv.org/abs/2601.05172)
+
+[Parallel-R1: Towards Parallel Thinking via Reinforcement Learning](https://arxiv.org/pdf/2509.07980)
+
+[Scaling Long-Horizon LLM Agent via Context-Folding](https://arxiv.org/pdf/2510.11967)
