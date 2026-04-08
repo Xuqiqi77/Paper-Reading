@@ -21,3 +21,6 @@ ReAct: Synergizing Reasoning and Acting in Language Models
 [Parallel-R1: Towards Parallel Thinking via Reinforcement Learning](https://arxiv.org/pdf/2509.07980)
 
 [Scaling Long-Horizon LLM Agent via Context-Folding](https://arxiv.org/pdf/2510.11967)
+
+[Recursive Language Models](https://arxiv.org/pdf/2512.24601)
+
