@@ -165,7 +165,22 @@ You can check the content of the ‘context‘ variable (e.g. print length, prin
 {For information-dense tasks, need to process every line / every pair.For needle-in-haystack, only search relevant chunks.
 }
 
-## RLM with REPL（无子程序）的具体逻辑？:
+## RLM with REPL（无子程序）的具体逻辑？ ？存疑
+You can access, transform, and analyze this context interactively in a REPL environment.
+
+You can:
+- peek the context
+- slice the context
+- read parts of context
+- print pieces of context
+- use regex to search
+- store variables
+
+You CANNOT invoke sub-LLMs / llm_query()
+
+
+## 训练方案
+8B 全量微调
 
 
 
