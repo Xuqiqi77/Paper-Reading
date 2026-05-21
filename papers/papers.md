@@ -24,3 +24,16 @@ ReAct: Synergizing Reasoning and Acting in Language Models
 
 [Recursive Language Models](https://arxiv.org/pdf/2512.24601)
 
+# 26.5.20
+Shoot First, Ask Questions Later? Building Rational Agents that Explore and Act Like People
+
+MemAgent: Reshaping Long-Context LLM with Multi-Conv RL-based Memory Agent
+
+In-Place Test-Time Training
+
+AgentGym-RL: An Open-Source Framework to Train LLM Agents for Long-Horizon Decision Making via Multi-Turn RL
+
+Agent Data Protocol: Unifying Datasets for Diverse, Effective Fine-tuning of LLM Agents
+
+GEPA: Reflective Prompt Evolution Can Outperform Reinforcement Learning
+
