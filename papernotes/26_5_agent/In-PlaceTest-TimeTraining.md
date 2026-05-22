@@ -38,10 +38,8 @@ workflow:
 
 让 W_down 学会：看到 Z，就能产生更接近 V 的输出
 
-
-
 **目标函数**
-
+V_hat = Conv1D(X_0) W_target
 
 ![alt text](image-1.png)
 
