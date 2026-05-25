@@ -1,4 +1,4 @@
-<!-- 语言模型 Agent 会不会像人一样，在不确定环境里“先问好问题，再做高价值行动”；如果不会，能不能用贝叶斯方法帮它变得更理性。 -->
+<!-- 语言模型 Agent 会不会像人一样，在不确定环境里“先问好问题，再做高价值行动”；如果不会，能不能用贝叶斯方法帮它变得更理性。 无训练 -->
 <!--  ICLR 2026 MIT Oral-->
 # SHOOT FIRST, ASK QUESTIONS LATER? BUILDING RATIONAL AGENTS THAT EXPLORE AND ACT LIKE PEOPLE
 在资源有限的高风险环境中，语言模型（LM）是否会像理性智能体那样行动？
