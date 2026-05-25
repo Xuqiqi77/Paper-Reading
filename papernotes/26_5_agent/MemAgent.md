@@ -29,7 +29,7 @@
 3. 实验证明，外推能力
 
 ## 方法
-![alt text](image.png)
+![alt text](MemAgent.png)
 
 下一个文本块，以及一个紧凑、固定长度的 memory
 这个 memory 本质上仍是上下文窗口中的普通 token 序列
@@ -41,10 +41,10 @@ RL问题：奖励：保留有用 舍弃无用
 优化： DAPO
 
 Context-Processing 模块 + Answer-Generation 模块
-![alt text](image-1.png)
+![alt text](MemAgent-1.png)
 
 **训练**
-![alt text](image-2.png)
+![alt text](MemAgent-2.png)
 一个样本会生成很多段“独立对话”
 Multi-Conv DAPO：如果某条轨迹最后答对了，前面这些“写 memory”的动作整体都被认为更值得鼓励
 
@@ -78,11 +78,11 @@ Qwen2.5-14B-Instruct
 
 **结果**
 
-![alt text](image-3.png)
+![alt text](MemAgent-3.png)
 
-![alt text](image-4.png)
+![alt text](MemAgent-4.png)
 
-![alt text](image-5.png)
+![alt text](MemAgent-5.png)
 
 框架本身有用 + 外推更长上下文 + RL真正掌握能力 + 跨任务泛化
 
