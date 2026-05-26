@@ -1,6 +1,6 @@
 <!-- 让 agent 主动把某个子任务“分叉出去做”，做完后再“折叠回来”  branch/return RL(flodGRPO)
 让 agent 在“子任务天然闭合”的地方折叠上下文-->
-<!-- ByteDance Seed  -->
+<!-- ByteDance Seed ICML 2026  -->
 # Scaling Long-Horizon LLM Agent via Context-Folding
 我们开发了一个端到端的强化学习框架 FoldGRPO，并设计了专门的过程奖励，以鼓励有效的任务分解和上下文管理
 

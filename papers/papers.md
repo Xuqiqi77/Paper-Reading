@@ -35,6 +35,7 @@ In-Place Test-Time Training
 **left: after experiment**
 
 AgentGym-RL: An Open-Source Framework to Train LLM Agents for Long-Horizon Decision Making via Multi-Turn RL
+**left: appendix**
 
 Agent Data Protocol: Unifying Datasets for Diverse, Effective Fine-tuning of LLM Agents
 **done**
