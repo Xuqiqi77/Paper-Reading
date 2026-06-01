@@ -84,17 +84,59 @@ chunk4 用 W_down + ΔW1 + ΔW2 + ΔW3
 2. 从零开始训练时，In-Place TTT 与以往 TTT 方法相比表现如何
 3. In-Place TTT 框架中的关键设计选择分别带来哪些影响
 ---
-1. 
+**即插即用增强**
+Qwen3-4B-Base 作为基础模型
 
+虽然两种模型在短上下文下都具有竞争力，但随着序列长度增加，加入 In-Place TTT 的 Qwen3-4B-Base
+会形成持续且不断扩大的优势
+
+扩展到 LLaMA-3.1-8B和Qwen3-14B-Base
+稳定提升了 RULER 分数
+
+**从零预训练：对比分析**
+500M 和 1.5B 
+>SWA，sliding-window >attention
+>GLA
+>DeltaNet
+>LaCT
+>In-Place TTT
+
+4B
+[给 Full Attention 或 SWA 加上 In-Place TTT 后，长上下文指标明显提升]
+[同时，常识/通用任务没有出现那种“为了长上下文，把基础能力换没了”的明显灾难]
+
+**消融实验**
+state size  快权重容量越大，RULER 表现越好
+
+chunk size  在效果和并行度之间找平衡。结果显示 C=512 和 C=1024 都比较好，而 C=1024 更高效
+
+LM-aligned objective
+把目标里的两部分分别拿掉：
+Conv1D
+W_target 投影
+
+Conv1D 对长上下文尤其关键，因为它负责把“未来 token 的预测信号”揉进 target
+W_target 对短上下文也很重要，因为它把 target 映射到更适合更新快权重的空间
 
 # 附录 
+Related Work
+Theorem 1 的完整证明
+Context Parallel Algorithm 的伪代码
+实验细节
 
 
 
 # Noun explanation && Extensive knowledge 
+## sliding-window perplexity
+perplexity 越低，模型越会预测这段文本。
 
 
 # 思考？
+训练时主要在训练两类东西：
+
+慢权重
+快权重的初始值/基座值
+
 问题：TTT背景 三个问题
 认知增量：不用改架构也能ttt
 方法：

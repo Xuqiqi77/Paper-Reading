@@ -32,7 +32,7 @@ MemAgent: Reshaping Long-Context LLM with Multi-Conv RL-based Memory Agent
 **done**
 
 In-Place Test-Time Training
-**left: after experiment**
+**left: appendix**
 
 AgentGym-RL: An Open-Source Framework to Train LLM Agents for Long-Horizon Decision Making via Multi-Turn RL
 **left: appendix**
@@ -41,11 +41,14 @@ Agent Data Protocol: Unifying Datasets for Diverse, Effective Fine-tuning of LLM
 **done**
 
 GEPA: Reflective Prompt Evolution Can Outperform Reinforcement Learning
-
+**left: appendix**
 
 # 26.5.22
 Is Chain-of-Thought Reasoning of LLMs a Mirage? A Data Distribution Lens
 
+
 An Empirical Study of Proactive Coding Assistantsin Real-World Software Development
 
+
 Learning to Reason in 13 Parameters
+
