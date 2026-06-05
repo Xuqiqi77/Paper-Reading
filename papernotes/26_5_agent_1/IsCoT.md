@@ -85,7 +85,21 @@ f1◦f1 -> f2◦f2  OOD
 ### 推理步数泛化
 ![alt text](image-5.png)
 
+### 格式泛化
+insert 插入一个噪声 token
+delete 删除一个原始 token
+modify 用噪声 token 替换一个原始 token
+hybird 将上述扰动方式组合使用
 
+![alt text](image-6.png)
+
+### 数据分布视角的普适性
+**内部有效性**
+
+当遇到任务、长度和格式泛化中的分布偏移时，不同规模和不同架构的 LLM 生成的 CoT 推理表现出类似行为，这突出了良好的内部有效性。
+
+**外部有效性**
+关键，在于识别训练数据与测试查询之间的分布差异
 
 
 # 附录 
@@ -96,7 +110,11 @@ f1◦f1 -> f2◦f2  OOD
 # Noun explanation && Extensive knowledge 
 ## 算法性偏置
 算法系统在数据、模型设计、训练目标或部署过程中，因为某些系统性因素，导致输出结果对某些群体、样本类型或任务场景产生不公平、不准确或不一致的倾向
-## 
+## bleu score
+Bilingual Evaluation Understudy
+
+看模型生成的文本，和标准答案文本之间有多少 n-gram 片段重合
+
 
 # 思考？
 这个设计下的f本来就可交换吧？
