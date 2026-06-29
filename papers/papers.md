@@ -98,12 +98,18 @@ Learning to Reason in 13 Parameters
 
 - [Learning Unmasking Policies for Diffusion Language Models](https://icml.cc/virtual/2026/oral/71028)  
   topic: Diffusion LM / Decoding Policy / RL
+[not]
+
 
 - [Don’t Force the Fit: Bounded Log-Likelihood Loss for Enhanced Reasoning in Large Language Models](https://icml.cc/virtual/2026/oral/71059)  
   topic: Reasoning SFT / Training Objective / LLM Generalization
+[没公开]
+
 
 - [DPO Unchained: Your Training Algorithm is Secretly Disentangled in Human Choice Theory](https://icml.cc/virtual/2026/oral/71131)  
   topic: Preference Optimization / DPO Theory / RLHF
+
+
 
 - [Characterizing, Evaluating, and Optimizing Complex Reasoning](https://icml.cc/virtual/2026/oral/71153)  
   topic: Complex Reasoning / Thinking Reward Model / Reasoning Evaluation

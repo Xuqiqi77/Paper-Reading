@@ -219,6 +219,8 @@ MIPROv2 = DSPy 里的自动 prompt 优化器。
 # 思考？
 对比的RL提示词过于简单？
 
+主 GRPO 用 LoRA，另外也探索了 full-parameter finetuning
+
 问题：降低 RL成本 
 认知增量：充分利用rollout
 方法：对提示词的迭代
