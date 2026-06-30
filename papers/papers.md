@@ -103,7 +103,7 @@ Learning to Reason in 13 Parameters
 
 - [Don’t Force the Fit: Bounded Log-Likelihood Loss for Enhanced Reasoning in Large Language Models](https://icml.cc/virtual/2026/oral/71059)  
   topic: Reasoning SFT / Training Objective / LLM Generalization
-[没公开]
+
 
 
 - [DPO Unchained: Your Training Algorithm is Secretly Disentangled in Human Choice Theory](https://icml.cc/virtual/2026/oral/71131)  
@@ -167,6 +167,7 @@ Learning to Reason in 13 Parameters
 
 - [What Preferences Can—and Cannot—Predict in Multi-Agent Online Learning](https://github.com/jiaxianyan/icml-2026-agent-papers/blob/main/README.zh-CN.md)  
   topic: Multi-Agent Online Learning / Preferences / Theory
+
 
 
 ## Multimodal / VLM / Forecasting / Vision
