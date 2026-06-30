@@ -216,6 +216,53 @@ Agent0-VL VLM agent 训练框架
 
 ![alt text](image-1.png)
 ---
+- [Characterizing, Evaluating, and Optimizing Complex Reasoning](https://icml.cc/virtual/2026/oral/71153)  
+
+提出的核心概念：ME² principle
+Macro / Micro
+Efficiency / Effectiveness
+
+Macro-Efficiency： 整体结构是否简洁、有纪律。比如有没有不必要的分支、重复重启、反复检查同一个东西。
+
+Macro-Effectiveness： 整体推理结构是否围绕目标展开，逻辑路线是否连贯。比如有没有突然偏题、分支目标不清、跳步。
+
+Micro-Efficiency： 单个步骤是否简洁有效。比如有没有废话、重复表述、无意义 hedge。
+
+Micro-Effectiveness： 单个步骤是否局部正确。比如计算是否对、符号是否一致、有没有矛盾、幻觉或 unsupported claim。
+
+评价复杂推理：把 **reasoning trace 建成 DAG**
+
+论文的 DAG 构造是增量式的：按生成顺序遍历 step，对每个新 step，从之前的节点里选择语义上相关的 parent nodes。为了避免上下文太长，它不是把所有前序节点都给 LLM，而是构造一个 attachment pool，包括当前主分支和少量代表性分支端点
+
+训练：Thinking Reward Model, TRM
+
+![alt text](image-4.png)
+
+![alt text](image-3.png)
+
+TRM 不直接看最终答案对不对，它只看 reasoning trace 质量。结果发现，选更符合 ME² 的 reasoning trace，最终答案准确率也会提高
+更好的 thinking process 往往对应更好的 final outcome，即使 reward model 本身没有直接训练 answer correctness。
+
+Best-of-N selection / reward 0/1 -> 结合trace
+---
+- [Rare Event Analysis of Large Language Models](https://icml.cc/virtual/2026/oral/71154) 
+
+基于概率-某些输出非常罕见，开发测试阶段几乎看不到
+大规模部署会让这些尾部事件重新变得重要
+
+提出一个面向 LLM 的 Rare Event Analysis, REA 框架。
+实验 ： 
+ ARI, Automated Readability Index
+也就是文本可读性/阅读难度指标。TinyStories 模型本来应该生成儿童故事，所以高 ARI 的复杂/异常文本可以看作一种不希望出现的行为。
+Log-Prob
+也就是 completion 在模型下的联合 log probability，用来研究模型生成特别高概率或特别低概率文本的尾部分布。
+
+
+Exponential Tilting
+
+
+
+---
 > 以上 agent / 方法 框架 / 训练框架
 ---
 
@@ -245,11 +292,27 @@ GRPO PPO   SGD 更明显地超过 AdamW  省显存
 - [DPO Unchained: Your Training Algorithm is Secretly Disentangled in Human Choice Theory](https://icml.cc/virtual/2026/oral/71131)  
   topic: Preference Optimization / DPO Theory / RLHF
 
+几乎都是公式和文字
+
+**理论统一框架**
+DPO 为什么成立？
+DPO 里的 loss、reward、human choice model 之间到底是什么关系？
+DPO 后续变体是否一定要绑定某个具体的人类偏好模型？
+
+PO 的经典推导依赖一个具体的人类选择模型：Bradley-Terry-Luce, BTL。BTL 的直觉是：如果答案 A 的 reward 比答案 B 高，那么人类选择 A 的概率就更大。
+
+BTL 只是一个很具体的选择模型。很多 DPO 变体想改 margin、改 length normalization、改 reward/link function、改 loss，但一旦改了 经验？ 人类？
+
+推广 human choice model
+得到更一般的 DPO-style loss
+
+展示这个理论框架可以设计出和传统 DPO 不太一样的 preference optimization 算法。
 
 
 ---
 > 以上 偏理论
----
+
+
 
 ---
 
