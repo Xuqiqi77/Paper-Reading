@@ -205,3 +205,13 @@ Learning to Reason in 13 Parameters
 - [Incentivizing Truthfulness and Collaborative Fairness in Bayesian Learning](https://icml.cc/virtual/2026/oral/71101)  
   topic: Mechanism Design / Collaborative Learning / Truthfulness
 
+# 26.7
+[A Reduction of Imitation Learning and Structured Prediction to No-Regret Online Learning](https://arxiv.org/pdf/1011.0686)
+
+[CUBE: A Standard for Unifying Agent Benchmarks](https://arxiv.org/abs/2603.15798v1)
+
+[GEM: A GYM FOR AGENTIC LLMS](https://arxiv.org/pdf/2510.01051)
+
+[Loose LIPS Sink Ships:Asking Questions in Battleship with Language-Informed Program Sampling](https://arxiv.org/abs/2402.19471)
+
+[USERRL: TRAINING INTERACTIVE USER-CENTRIC AGENT VIA REINFORCEMENT LEARNING](https://arxiv.org/abs/2509.19736v1)
