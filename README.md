@@ -32,3 +32,13 @@ python rename_note_images.py --name ADP --rename-only
 
 ## 只修改 md 中的图片引用，不重命名图片
 python rename_note_images.py --name ADP --md-only
+
+## 论文收录 skill
+
+使用仓库内的 [paper-intake](.agents/skills/paper-intake/SKILL.md)：
+
+```text
+用 $paper-intake 收录这些论文：论文链接、arXiv ID 或标题
+```
+
+默认按当前收录月份创建 `papers/YY_M/简称.pdf` 和 `papernotes/YY_M/简称.md`，并在 `papers/papers.md` 中补充来源、笔记与原文链接。可指定收录日期；重复收录会复用已有文件并保留已写笔记。

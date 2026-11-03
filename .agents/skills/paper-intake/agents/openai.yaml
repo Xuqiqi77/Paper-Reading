@@ -1,0 +1,4 @@
+interface:
+  display_name: "论文收录"
+  short_description: "按仓库月份目录下载论文原文、创建阅读笔记模板并续写论文索引"
+  default_prompt: "使用 $paper-intake 将给定论文收录到当前仓库，下载原文、创建笔记模板并更新 papers/papers.md。"

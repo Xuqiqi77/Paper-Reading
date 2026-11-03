@@ -215,3 +215,23 @@ Learning to Reason in 13 Parameters
 [Loose LIPS Sink Ships:Asking Questions in Battleship with Language-Informed Program Sampling](https://arxiv.org/abs/2402.19471)
 
 [USERRL: TRAINING INTERACTIVE USER-CENTRIC AGENT VIA REINFORCEMENT LEARNING](https://arxiv.org/abs/2509.19736v1)
+
+# 26.10
+
+[Training Proactive and Personalized LLM Agents](https://www.alphaxiv.org/abs/2511.02208)
+
+[笔记](../papernotes/26_10/PPP-Agent.md) / [原文 PDF](26_10/PPP-Agent.pdf) / [中文 PDF](<26_10/Training Proactive and Personalized LLM Agents.pdf>)
+
+# 26.11
+
+[Can Agents Design Libraries for Agents?](https://www.alphaxiv.org/abs/2609.36730)
+
+[笔记](../papernotes/26_11/LibraryDesignBench.md) / [原文 PDF](26_11/LibraryDesignBench.pdf)
+
+[Librarian Agents: Training LLMs to Curate Long-Context Workspaces that Anticipate Future Queries](https://www.alphaxiv.org/abs/2610.22273)
+
+[笔记](../papernotes/26_11/LibrarianAgents.md) / [原文 PDF](26_11/LibrarianAgents.pdf)
+
+[Trial by Trace: Benchmarking AI Agent Harnesses for Reliability and Failure Attribution](https://www.alphaxiv.org/abs/2610.32285)
+
+[笔记](../papernotes/26_11/TrialByTrace.md) / [原文 PDF](26_11/TrialByTrace.pdf)
